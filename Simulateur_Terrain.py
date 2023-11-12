@@ -13,8 +13,8 @@ df = pd.DataFrame(data)
 
 st.set_page_config(page_title='Moma Immobilier', page_icon=":tada:", layout='wide')
 # Interface utilisateur Streamlit
-st.title("Recherche de terrains :house:")
-st.sidebar.header("Criteres de recherche")
+st.title("Trouvez le terrain de vos rêves :house:")
+st.sidebar.header("Indiquez vos préférences")
 
 # Filtres pour chaque colonne
 zone_filter = st.sidebar.selectbox("Zone", df["Zone"].unique())
