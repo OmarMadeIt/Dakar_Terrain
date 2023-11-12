@@ -11,8 +11,9 @@ data = {
 
 df = pd.DataFrame(data)
 
+st.set_page_config(page_title='Moma Immobilier', page_icon=":tada:", layout='wide')
 # Interface utilisateur Streamlit
-st.title("Recherche de terrains")
+st.title("Recherche de terrains :house:")
 st.sidebar.header("Criteres de recherche")
 
 # Filtres pour chaque colonne
@@ -20,17 +21,21 @@ zone_filter = st.sidebar.selectbox("Zone", df["Zone"].unique())
 type_papier_filter = st.sidebar.selectbox("Type de papier", df["Type de papier"].unique())
 surface_filter = st.sidebar.number_input("Surface (M2)", min_value=0)
 
+# Ajouter un bouton "Rechercher"
+button_search = st.sidebar.button("Rechercher")
+
 # Filtrer les données en fonction des critères choisis
-filtered_data = df[
-    (df["Zone"].str.contains(zone_filter, case=False)) &
-    (df["Type de papier"] == type_papier_filter) &
-    (df["Surface (M2)"] >= surface_filter)
-]
+if button_search:
+    filtered_data = df[
+        (df["Zone"].str.contains(zone_filter, case=False)) &
+        (df["Type de papier"] == type_papier_filter) &
+        (df["Surface (M2)"] >= surface_filter)
+    ]
 
-# Afficher les résultats
-st.subheader("Résultats de la recherche")
+    # Afficher les résultats
+    st.subheader("Résultats de la recherche")
 
-if filtered_data.empty:
-    st.info("Nous n'avons pas trouvé de terrain correspondant à vos criteres.")
-else:
-    st.table(filtered_data)
+    if filtered_data.empty:
+        st.info("Nous n'avons pas trouvé de terrain correspondant à vos critères.")
+    else:
+        st.table(filtered_data)
