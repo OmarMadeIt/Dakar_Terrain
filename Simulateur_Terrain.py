@@ -3,17 +3,17 @@ import pandas as pd
 
 # Données du tableau
 data = {
-    "Zone": ["Keur Massar", "Almadies 2", "Kounoune", "Sacré Cœur"],
+    "Zone": ["Keur Massar", "Almadies 2", "Kounoune", "Sacre Cœur"],
     "Type de papier": ["Bail", "TF", "Délibération", "TF"],
     "Surface (M2)": [150, 170, 300, 160],
-    "Contact": ["keurmassar@gmail.com", "keurmassar@gmail.com", "kounoune@gmail.com", "dakar@gmail.com"]
+    "Contact": ["338320001", "338320002", "338320003", "338320004"]
 }
 
 df = pd.DataFrame(data)
 
 # Interface utilisateur Streamlit
 st.title("Recherche de terrains")
-st.sidebar.header("Critères de recherche")
+st.sidebar.header("Criteres de recherche")
 
 # Filtres pour chaque colonne
 zone_filter = st.sidebar.selectbox("Zone", df["Zone"].unique())
@@ -31,6 +31,6 @@ filtered_data = df[
 st.subheader("Résultats de la recherche")
 
 if filtered_data.empty:
-    st.info("Nous n'avons pas trouvé de terrain correspondant à vos critères.")
+    st.info("Nous n'avons pas trouvé de terrain correspondant à vos criteres.")
 else:
     st.table(filtered_data)
